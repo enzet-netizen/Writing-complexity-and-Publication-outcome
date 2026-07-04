@@ -46,6 +46,7 @@ by the end of our observation window (June 2024)
 
 论文的发表结果只统计到 2024 年6月为止，需要进行截断。
 把 publication_date > 2024-06-30 的论文重标为 0，得到与论文时间口径一致的最终因变量 published_censored
+发表率由0.298变为0，207
 
 <img width="142" height="43" alt="image" src="https://github.com/user-attachments/assets/388fb3dc-66a8-4475-ad15-d17f45b4b58e" />。
 
