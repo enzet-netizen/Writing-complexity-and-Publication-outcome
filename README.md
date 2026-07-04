@@ -24,11 +24,13 @@ conceal the quality of the underlying research?
 As a proxy for quality, we then created a binary outcome defined as publication in a peer-reviewed journal or conference by the end of our observation window (June 2024)
 for all preprints since 2023.
 
-We traced the publication outcomes of preprints from arXiv, bioRxiv, and SSRN using OpenAlex. For arXiv and bioRxiv papers, we linked them to their corresponding records in OpenAlex
-using their DOI.
+We traced the publication outcomes of preprints from arXiv, bioRxiv, and SSRN using OpenAlex. For arXiv and bioRxiv papers, we linked them to their corresponding records in OpenAlex using their DOI.
+
 
 给每篇 2023 年后的 preprint 打一个 0/1 标签，代表截至 2024 年 6 月它有没有通过同行评审发表。doi为空，就是没有发表，doi有值，去查openAlex，即发表成功。
-元数据 doi 字段偶含多个 DOI,本复现将全部 DOI 逐一查询，任一命中期刊/会议即判定发表，发表日期取最早
+元数据 doi 字段偶含多个 DOI,本复现将全部 DOI 逐一查询，任一命中期刊/会议即判定发表，发表日期取最早。
+要查的 arxiv_id-doi 对: 73941  涉及论文: 73911。
+
 
 
 
