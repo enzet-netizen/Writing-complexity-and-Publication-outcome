@@ -19,6 +19,7 @@ conceal the quality of the underlying research?
 
 #### input文件：arxiv_clean.csv
 #### 运行文件：pub_status.py
+#### 中间文件：pub_status_raw.csv
 #### output文件：pub_status.csv
 
 As a proxy for quality, we then created a binary outcome defined as publication in a peer-reviewed journal or conference by the end of our observation window (June 2024)
@@ -29,25 +30,22 @@ We traced the publication outcomes of preprints from arXiv, bioRxiv, and SSRN us
 
 给每篇 2023 年后的 preprint 打一个 0/1 标签，代表截至 2024 年 6 月它有没有通过同行评审发表。doi为空，就是没有发表，doi有值，去查openAlex，即发表成功。
 元数据 doi 字段偶含多个 DOI,本复现将全部 DOI 逐一查询，任一命中期刊/会议即判定发表，发表日期取最早。
-要查的 arxiv_id-doi 对: 73941  涉及论文: 73911。
+
+doi为空（144,717 篇，66.2%）,作者未回填任何期刊信息，直接判 published=0，不做查询
+doi有值（73,915 篇，33.8%）,拿期刊 DOI 批量查询 OpenAlex，检查返回记录的locations中是否存在 journal, conference的来源,是则 published=1
 
 
 
 
-## 2.性别分析
-#### input文件：authors_clean.csv
-#### 运行文件：name_gender_identification.py
-#### output文件： gender_cache.csv
+## 2.时间筛选
+#### input文件：arxiv_clean.csv, pub_status_raw.csv
+#### 运行文件：pub_statis_time.py
+#### output文件： pub_status_final.csv
 
-取出去重后的23,731个名字，分批到genderize API，每个名字存回 name，gender，probability，count，并做了一个断点续传。
-无法查到性别（返回none）：2009，占8.5%.
+by the end of our observation window (June 2024)
 
-去重后的名字一共3598个，其中2610个名字已经在原有的查询之中，新增添的名字一个988个。补回的8969个作者名字中，男性共6283条，女性1498条，无法查询性别共1188条，因此真实净收益7781条数据。
-
-加上新的性别分布，一共有24719个不同的名字。数据共138568条。共有97%能进行性别判断，72.9%的作者置信度在0.95 以上，但是男女比例极度失衡，约为4.7:1
-原本性别表: 133,879 行，其中 male/female: 130,787，补回性别表8,969 行，其中 male/female: 7,781
-
-性别分布：。
+论文的发表结果只统计到 2024 年6月为止，需要进行截断。
+把 publication_date > 2024-06-30 的论文重标为 0，得到与论文时间口径一致的最终因变量 published_censored
 
 <img width="142" height="43" alt="image" src="https://github.com/user-attachments/assets/388fb3dc-66a8-4475-ad15-d17f45b4b58e" />。
 
