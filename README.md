@@ -48,3 +48,17 @@ by the end of our observation window (June 2024)
 把 publication_date > 2024-06-30 的论文重标为 0，得到与论文时间口径一致的最终因变量 published_censored
 发表率由0.298变为0，207
 
+## 3.写作复杂度计算
+#### input文件：arxiv_clean.csv, alpha_scores.csv, pub_status_final.csv
+#### 运行文件：complexity.py
+#### output文件： fig3_data.csv
+
+We gauged writing complexity with the additive inverse of the Flesch Reading Ease score (see SM S2.7). This measure quantifies text complexity as a composite of average sentence length and syllables per word, with higher scores indicating more complex text
+
+Writing complexity = 1.015 × (total words / total sentences) + 84.6 × (total syllables / total words) − 206.835
+
+SM S2.7 "the measure is only calculated for abstracts with at least 100 words
+
+样本: 218632  LLM比例: 0.251  发表率: 0.207
+最终样本: 175177
+
