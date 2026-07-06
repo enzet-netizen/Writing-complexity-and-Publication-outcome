@@ -1,4 +1,4 @@
-# Writing Complexity and Publication Outcomes
+# Writing Complexity
 
 Replicator: Enzo Tang
 
